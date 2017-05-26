@@ -12,3 +12,13 @@ vagrant up
 
 This will automatically create a virtual machine running Ubuntu Trusty 64 bits 
 and install the environment described in [[https://github.com/udacity/RoboND-Python-StarterKit/blob/master/doc/configure_via_anaconda.md][the course documentation.]]
+
+Then hit the following command to get into the virtual machine:
+#+BEGIN_SRC sh
+vagrant ssh 
+#+END_SRC
+
+Then you'll need to activate the =conda= environment using 
+#+BEGIN_SRC sh
+source activate RoboND
+#+END_SRC
