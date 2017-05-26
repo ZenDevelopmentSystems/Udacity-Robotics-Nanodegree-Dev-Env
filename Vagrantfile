@@ -66,13 +66,14 @@ Vagrant.configure("2") do |config|
   # documentation for more information about their specific syntax and use.
    config.vm.provision "shell", privileged: false, inline: <<-SHELL
      sudo apt-get update
-     sudo apt-get install -y git 
+     sudo apt-get install -y git libgtk2.0-dev  
      wget https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh -O installer.sh
      chmod +x ./installer.sh
      ./installer.sh -b
      git clone https://github.com/udacity/Robond-Python-StarterKit.git  
      cd Robond-Python-StarterKit
-     PATH=$PATH:/home/vagrant/miniconda3/bin
+     echo "PATH=$PATH:/home/vagrant/miniconda3/bin" >> ~/.bashrc
+     source ~/.bashrc
      conda env create -f environment.yml
      conda clean -tp
      cd ../ && rm -f installer.sh 
