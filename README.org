@@ -1,11 +1,58 @@
-* Deps
+* Udacity Robotics Nanodegree dev environment
+The goal of this repo is to provide two ways to set up the requirements to 
+follow the robotics nanodegree from Udacity with a few commands. 
+
+
+** Docker
+
+*** Deps
+Tested on Docker version =1.7.1=, build =786b29d=
+
+
+*** Build image
+
+#+begin_src sh
+docker build -t robo .
+#+end_src
+
+*** Verify that the virtualenv RoboND is present
+#+begin_src sh
+docker run -it -v $(pwd):/home/unicorn/work robo  conda info --envs
+#+end_src
+
+
+*** Run Jupyter server
+To run jupyter-notebook in the container with the web interface accessible from within the browser 
+of the host machine:
+
+#+BEGIN_SRC sh
+sudo docker run -p 8888:8888 -v $(pwd):/home/unicorn/work robo  \
+jupyter-notebook --ip=0.0.0.0 --port=8888  --notebook-dir=/home/unicorn/work
+#+END_SRC
+
+You'll then be able to access the interface at http://localhost:8888/ 
+
+You'll be asked to enter a token, this token is visible in the terminal a few seconds after having
+launch the above command.
+
+
+Note that this command will also mount the local directory (from which the command is launch,
+typically from this repository) to =/home/unicorn/data=. This allows you to persists you work achieved
+through the web interface.
+
+
+See [[https://docs.docker.com][Docker documentation]] for more information about the options used.
+
+
+
+** Vagrant
+*** Deps
 
 - Requires Vagrant 1.9.1 (should work on other versions but not tested)
 - VirtualBox 5.1
 
 
-* Usage
-
+*** Usage
 #+BEGIN_SRC sh
 vagrant up
 #+END_SRC
